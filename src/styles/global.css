@@ -285,6 +285,22 @@ html[data-theme="dark"] .theme-toggle .dot { background: var(--accent); }
   margin: 40px 0;
 }
 
+/* ───── Focus & accessibility ───── */
+
+:focus-visible {
+  outline: 2px solid var(--accent-ink);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: 0ms !important;
+    animation-duration: 0ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
 /* ───── Mobile (shell) ───── */
 
 @media (max-width: 720px) {

@@ -41,6 +41,9 @@ const currentPath = Astro.url.pathname;
           document.querySelectorAll('[data-theme-label]').forEach(function (el) {
             el.textContent = theme;
           });
+          document.querySelectorAll('[data-theme-toggle]').forEach(function (btn) {
+            btn.setAttribute('aria-label', 'Switch to ' + (theme === 'dark' ? 'light' : 'dark') + ' mode');
+          });
         });
       })();
     </script>
@@ -96,6 +99,9 @@ const currentPath = Astro.url.pathname;
         function updateLabel(theme: string) {
           document.querySelectorAll('[data-theme-label]').forEach((el) => {
             el.textContent = theme;
+          });
+          document.querySelectorAll('[data-theme-toggle]').forEach((btn) => {
+            btn.setAttribute('aria-label', `Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`);
           });
         }
 
