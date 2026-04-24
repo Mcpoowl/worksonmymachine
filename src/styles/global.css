@@ -1063,13 +1063,20 @@ html[data-theme="dark"] .article-body pre code span { color: var(--shiki-dark); 
   max-width: 760px;
 }
 .about-head .eyebrow { display: block; margin-bottom: 28px; }
+.about-sub {
+  font-family: var(--mono);
+  font-size: 13px;
+  color: var(--ink-3);
+  margin: 2px 0 0;
+  letter-spacing: 0;
+}
 .about-head h1 {
   font-family: var(--serif);
   font-weight: 500;
   font-size: clamp(44px, 6.5vw, 76px);
   line-height: 1.0;
   letter-spacing: -0.025em;
-  margin: 0 0 28px;
+  margin: 0 0 6px;
   font-variation-settings: "opsz" 64;
   text-wrap: balance;
 }

@@ -10,20 +10,21 @@ const allPosts = await getCollection('posts', ({ data }) => !data.draft);
   <header class="about-head">
     <span class="eyebrow"><b>About</b> &nbsp;·&nbsp; colophon, bio, confessions</span>
     <h1>Hi. I'm <em>Paul</em>, and this is where I keep the things I've figured out.</h1>
+    <p class="about-sub">Or so I'd like to believe.</p>
   </header>
 
   <div class="about-grid">
 
     <div class="bio">
-      <p>I'm a software engineer by training and a generalist by temperament. I've shipped backends that get paged at night, front-ends that ship on Tuesdays, and one well-intentioned Kubernetes cluster that ran a single cron job for eighteen months before I noticed. I write about the places where software meets the physical world — which mostly means AI, self-hosted infrastructure, my homelab, and Home Assistant's ongoing campaign against my smart plugs.</p>
+      <p>I am a business/software engineer by training (whatever that may mean) and a generalist by temperament. I've shipped backends that get paged at night, infinite loops, deployed on Friday evenings, and very rough Mondays as a result. I write about the places where software meets the physical world, which today mostly means AI, but also self-hosted infrastructure, my homelab, non working docker containers and Home Assistant's ongoing campaign against my smart plugs.</p>
 
-      <p>This site exists because I got tired of solving the same problem twice. The first time through, I'd find the fix somewhere between a Reddit thread from 2019 and a GitHub issue marked <em>stale-bot closed</em>. The second time through, I'd find nothing, because it had been me who fixed it, and I had not written it down. Now I write it down.</p>
+      <p>This site exists because of no real reason. I just wanted a place to write down what I've been working on, hoping it'd help someone, make someone facepalm, or gave someone a laugh. And let's be honest. How often have you run into an issue, searched the web for a solution, only to find the same Stackoverflow question you asked 3 years ago without a single reply. So now, I write it down. Most of the time..
 
       <p class="pullquote">Writing about something forces me to understand it. Posting it forces me to be less wrong. Both are, probably, the point.</p>
 
-      <p>The pieces here are long when they need to be and short when they don't. I try not to be a tutorial; there are better tutorials. I try not to be a corporate thought-leadership column; there are too many of those already. What I aim for is the tone of a notebook someone left in a shared house — honest, specific, occasionally pettily opinionated, mostly about the thing that broke.</p>
+      <p>The pieces here are long when they need to be and short when they don't. I try not to be a tutorial; there are better tutorials. I try not to be a corporate thought-leadership column; there are too many of those already. What I aim for is the tone of a notebook someone left in a house: full of random scribbles, the occasional doodle, but also honest, specific and probably very frustrated at the thing that broke, again..</p>
 
-      <p>If you want to know what I'm actually working on right now, the <a href="/">homepage's <em>now</em> card</a> is kept current by hand.</p>
+      <p>If you want to know what I'm actually working on right now, the <a href="/">homepage's <em>now</em> card</a> is kept current by hand. It's not much, but it's honest work. And obviously this site. And work. There's also work</p>
     </div>
 
     <aside class="side">
@@ -31,8 +32,8 @@ const allPosts = await getCollection('posts', ({ data }) => !data.draft);
         <h3>/ vitals</h3>
         <dl>
           <dt>Based</dt><dd>The Netherlands</dd>
-          <dt>Day job</dt><dd>Not named here, on purpose.</dd>
-          <dt>Since</dt><dd>This site launched <b>2026</b></dd>
+          <dt>Day job</dt><dd>Low-Code Developer, AI enthusiast, husband, dad, the works.</dd>
+          <dt>Since</dt><dd>This site launched in <b>2026</b></dd>
           <dt>Posts</dt><dd><b>{allPosts.length}</b>, roughly when I feel like it</dd>
         </dl>
       </div>
@@ -40,12 +41,12 @@ const allPosts = await getCollection('posts', ({ data }) => !data.draft);
       <div class="side-block">
         <h3>/ tools, currently</h3>
         <ul>
-          <li>Obsidian <span>notes</span></li>
+          <li>Obsidian <span>notes & articles</span></li>
           <li>VS Code <span>code</span></li>
-          <li>Proxmox <span>homelab</span></li>
+          <li>Synology NAS <span>homelab</span></li>
           <li>Home Assistant <span>house</span></li>
           <li>Docker Compose <span>containers</span></li>
-          <li>Caddy <span>reverse proxy</span></li>
+          <li>Unifi <span>home network</span></li>
         </ul>
       </div>
 
@@ -57,7 +58,7 @@ const allPosts = await getCollection('posts', ({ data }) => !data.draft);
           <li>Docker, Compose, k3s <span>yes</span></li>
           <li>Home Assistant <span>grudgingly</span></li>
           <li>Web frameworks <span>rarely</span></li>
-          <li>Blockchain <span>no</span></li>
+          <li>Blockchain <span>probably not?</span></li>
         </ul>
       </div>
 
@@ -81,7 +82,7 @@ const allPosts = await getCollection('posts', ({ data }) => !data.draft);
       <div class="n">01</div>
       <div>
         <p class="q">Is the site name a <em>joke</em>?</p>
-        <p class="a">Partly. "Works on my machine" is the oldest apology in software. It's also the most honest description of anything I'd write here: it worked for me, in my conditions, on my hardware, on a Tuesday. Your mileage will vary. That's the whole point of writing it down.</p>
+        <p class="a">Partly. "Works on my machine" is the oldest apology in software. It's also the most honest description of anything I'd write here: it worked for me, in my conditions, on my hardware, on a Tuesday at 4:20pm. Your mileage will vary. That's the whole point of writing it down.</p>
       </div>
     </div>
 
@@ -113,7 +114,7 @@ const allPosts = await getCollection('posts', ({ data }) => !data.draft);
   <section class="contact">
     <div>
       <h2>If something here was <em>useful</em>, or wrong, tell me.</h2>
-      <p>Corrections are the best kind of email. I reply to most things eventually, usually in batches with too much coffee. Assume nothing is urgent.</p>
+      <p>Corrections are the best kind of email. I reply to most things eventually, usually in batches with too much coffee. Assume nothing is urgent. And hey, a compliment is nice as well. We need more of those!</p>
     </div>
     <div class="channels">
       <a href="mailto:paul@worksonmymachine.io">paul@worksonmymachine.io</a>
