@@ -1,0 +1,20 @@
+---
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+interface Props {
+  headings: Heading[];
+}
+const { headings } = Astro.props;
+const h2s = headings.filter((h) => h.depth === 2);
+---
+{h2s.length > 0 && (
+  <nav class="toc" id="toc" aria-label="Table of contents">
+    <div class="label">In this piece</div>
+    {h2s.map((h) => (
+      <a href={`#${h.slug}`} data-toc>{h.text}</a>
+    ))}
+  </nav>
+)}

@@ -1,63 +1,124 @@
 ---
-import AboutHeroImage from '../assets/blog-placeholder-about.jpg';
-import Layout from '../layouts/BlogPost.astro';
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+
+const allPosts = await getCollection('posts', ({ data }) => !data.draft);
 ---
 
-<Layout
-	title="About Me"
-	description="Lorem ipsum dolor sit amet"
-	pubDate={new Date('August 08 2021')}
-	heroImage={AboutHeroImage}
->
-	<p>
-		Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-		labore et dolore magna aliqua. Vitae ultricies leo integer malesuada nunc vel risus commodo
-		viverra. Adipiscing enim eu turpis egestas pretium. Euismod elementum nisi quis eleifend quam
-		adipiscing. In hac habitasse platea dictumst vestibulum. Sagittis purus sit amet volutpat. Netus
-		et malesuada fames ac turpis egestas. Eget magna fermentum iaculis eu non diam phasellus
-		vestibulum lorem. Varius sit amet mattis vulputate enim. Habitasse platea dictumst quisque
-		sagittis. Integer quis auctor elit sed vulputate mi. Dictumst quisque sagittis purus sit amet.
-	</p>
+<Base title="About" description="About Paul — the person behind Works on My Machine.">
 
-	<p>
-		Morbi tristique senectus et netus. Id semper risus in hendrerit gravida rutrum quisque non
-		tellus. Habitasse platea dictumst quisque sagittis purus sit amet. Tellus molestie nunc non
-		blandit massa. Cursus vitae congue mauris rhoncus. Accumsan tortor posuere ac ut. Fringilla urna
-		porttitor rhoncus dolor. Elit ullamcorper dignissim cras tincidunt lobortis. In cursus turpis
-		massa tincidunt dui ut ornare lectus. Integer feugiat scelerisque varius morbi enim nunc.
-		Bibendum neque egestas congue quisque egestas diam. Cras ornare arcu dui vivamus arcu felis
-		bibendum. Dignissim suspendisse in est ante in nibh mauris. Sed tempus urna et pharetra pharetra
-		massa massa ultricies mi.
-	</p>
+  <header class="about-head">
+    <span class="eyebrow"><b>About</b> &nbsp;·&nbsp; colophon, bio, confessions</span>
+    <h1>Hi. I'm <em>Paul</em>, and this is where I keep the things I've figured out.</h1>
+    <p class="about-sub">Or so I'd like to believe.</p>
+  </header>
 
-	<p>
-		Mollis nunc sed id semper risus in. Convallis a cras semper auctor neque. Diam sit amet nisl
-		suscipit. Lacus viverra vitae congue eu consequat ac felis donec. Egestas integer eget aliquet
-		nibh praesent tristique magna sit amet. Eget magna fermentum iaculis eu non diam. In vitae
-		turpis massa sed elementum. Tristique et egestas quis ipsum suspendisse ultrices. Eget lorem
-		dolor sed viverra ipsum. Vel turpis nunc eget lorem dolor sed viverra. Posuere ac ut consequat
-		semper viverra nam. Laoreet suspendisse interdum consectetur libero id faucibus. Diam phasellus
-		vestibulum lorem sed risus ultricies tristique. Rhoncus dolor purus non enim praesent elementum
-		facilisis. Ultrices tincidunt arcu non sodales neque. Tempus egestas sed sed risus pretium quam
-		vulputate. Viverra suspendisse potenti nullam ac tortor vitae purus faucibus ornare. Fringilla
-		urna porttitor rhoncus dolor purus non. Amet dictum sit amet justo donec enim.
-	</p>
+  <div class="about-grid">
 
-	<p>
-		Mattis ullamcorper velit sed ullamcorper morbi tincidunt. Tortor posuere ac ut consequat semper
-		viverra. Tellus mauris a diam maecenas sed enim ut sem viverra. Venenatis urna cursus eget nunc
-		scelerisque viverra mauris in. Arcu ac tortor dignissim convallis aenean et tortor at. Curabitur
-		gravida arcu ac tortor dignissim convallis aenean et tortor. Egestas tellus rutrum tellus
-		pellentesque eu. Fusce ut placerat orci nulla pellentesque dignissim enim sit amet. Ut enim
-		blandit volutpat maecenas volutpat blandit aliquam etiam. Id donec ultrices tincidunt arcu. Id
-		cursus metus aliquam eleifend mi.
-	</p>
+    <div class="bio">
+      <p>I am a business/software engineer by training (whatever that may mean) and a generalist by temperament. I've shipped backends that get paged at night, infinite loops, deployed on Friday evenings, and very rough Mondays as a result. I write about the places where software meets the physical world, which today mostly means AI, but also self-hosted infrastructure, my homelab, non working docker containers and Home Assistant's ongoing campaign against my smart plugs.</p>
 
-	<p>
-		Tempus quam pellentesque nec nam aliquam sem. Risus at ultrices mi tempus imperdiet. Id porta
-		nibh venenatis cras sed felis eget velit. Ipsum a arcu cursus vitae. Facilisis magna etiam
-		tempor orci eu lobortis elementum. Tincidunt dui ut ornare lectus sit. Quisque non tellus orci
-		ac. Blandit libero volutpat sed cras. Nec tincidunt praesent semper feugiat nibh sed pulvinar
-		proin gravida. Egestas integer eget aliquet nibh praesent tristique magna.
-	</p>
-</Layout>
+      <p>This site exists because of no real reason. I just wanted a place to write down what I've been working on, hoping it'd help someone, make someone facepalm, or gave someone a laugh. And let's be honest. How often have you run into an issue, searched the web for a solution, only to find the same Stackoverflow question you asked 3 years ago without a single reply. So now, I write it down. Most of the time..
+
+      <p class="pullquote">Writing about something forces me to understand it. Posting it forces me to be less wrong. Both are, probably, the point.</p>
+
+      <p>The pieces here are long when they need to be and short when they don't. I try not to be a tutorial; there are better tutorials. I try not to be a corporate thought-leadership column; there are too many of those already. What I aim for is the tone of a notebook someone left in a house: full of random scribbles, the occasional doodle, but also honest, specific and probably very frustrated at the thing that broke, again..</p>
+
+      <p>If you want to know what I'm actually working on right now, the <a href="/">homepage's <em>now</em> card</a> is kept current by hand. It's not much, but it's honest work. And obviously this site. And work. There's also work</p>
+    </div>
+
+    <aside class="side">
+      <div class="side-block">
+        <h3>/ vitals</h3>
+        <dl>
+          <dt>Based</dt><dd>The Netherlands</dd>
+          <dt>Day job</dt><dd>Low-Code Developer, AI enthusiast, husband, dad, the works.</dd>
+          <dt>Since</dt><dd>This site launched in <b>2026</b> Myself? in <b>1989</b></dd>
+          <dt>Posts</dt><dd><b>{allPosts.length}</b>, roughly when I feel like it</dd>
+        </dl>
+      </div>
+
+      <div class="side-block">
+        <h3>/ tools, currently</h3>
+        <ul>
+          <li>Obsidian <span>notes & articles</span></li>
+          <li>VS Code <span>code</span></li>
+          <li>Synology NAS <span>homelab</span></li>
+          <li>Home Assistant <span>house</span></li>
+          <li>Docker Compose <span>containers</span></li>
+          <li>Unifi <span>home network</span></li>
+        </ul>
+      </div>
+
+      <div class="side-block">
+        <h3>/ I'll write about</h3>
+        <ul>
+          <li>AI, local &amp; useful <span>yes</span></li>
+          <li>Homelab &amp; self-hosting <span>yes</span></li>
+          <li>Docker, Compose, k3s <span>yes</span></li>
+          <li>Home Assistant <span>grudgingly</span></li>
+          <li>Web frameworks <span>rarely</span></li>
+          <li>Blockchain <span>probably not?</span></li>
+        </ul>
+      </div>
+
+      <div class="side-block">
+        <h3>/ colophon</h3>
+        <dl>
+          <dt>Type</dt><dd>Newsreader &amp; IBM Plex Mono</dd>
+          <dt>Stack</dt><dd>Astro, static, Cloudflare Pages</dd>
+          <dt>Analytics</dt><dd>None</dd>
+          <dt>RSS</dt><dd>Always</dd>
+        </dl>
+      </div>
+    </aside>
+
+  </div>
+
+  <section class="faq">
+    <h2>Plausibly asked questions.</h2>
+
+    <div class="faq-item">
+      <div class="n">01</div>
+      <div>
+        <p class="q">Is the site name a <em>joke</em>?</p>
+        <p class="a">Partly. "Works on my machine" is the oldest apology in software. It's also the most honest description of anything I'd write here: it worked for me, in my conditions, on my hardware, on a Tuesday at 4:20pm. Your mileage will vary. That's the whole point of writing it down.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="n">02</div>
+      <div>
+        <p class="q">Why no newsletter, comments, or tracking?</p>
+        <p class="a">Comments are a moderation job I don't want. Newsletters are a product I don't want to run. Analytics are a question I don't need answered. RSS is older than I am and still works.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="n">03</div>
+      <div>
+        <p class="q">Do you take sponsorships or affiliate links?</p>
+        <p class="a">No. If I recommend something, I paid for it. If that ever changes, this line will change with it.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="n">04</div>
+      <div>
+        <p class="q">Can I republish your posts?</p>
+        <p class="a">Mostly yes — everything is MIT, credit with a link back. Don't feed them to a model without asking; that's a different conversation and I'd like to have it.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact">
+    <div>
+      <h2>If something here was <em>useful</em>, or wrong, tell me.</h2>
+      <p>Corrections are the best kind of email. I reply to most things eventually, usually in batches with too much coffee. Assume nothing is urgent. And hey, a compliment is nice as well. We need more of those!</p>
+    </div>
+    <div class="channels">
+      <a href="mailto:paul@worksonmymachine.io">paul@worksonmymachine.io</a>
+    </div>
+  </section>
+
+</Base>

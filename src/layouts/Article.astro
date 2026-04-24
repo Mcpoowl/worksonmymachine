@@ -1,0 +1,197 @@
+---
+import TableOfContents from '../components/TableOfContents.astro';
+import ThemeToggle from '../components/ThemeToggle.astro';
+import Wordmark from '../components/Wordmark.astro';
+import { site } from '../site.config';
+import '../styles/global.css';
+
+interface Heading {
+  depth: number;
+  slug: string;
+  text: string;
+}
+interface Props {
+  title: string;
+  description?: string;
+  kicker: string;
+  number: number;
+  category: string;
+  dek: string;
+  date: Date;
+  readTime: number;
+  tags: string[];
+  headings: Heading[];
+  wordCount?: number;
+}
+
+const {
+  title,
+  description,
+  kicker,
+  number,
+  category,
+  dek,
+  date,
+  readTime,
+  tags,
+  headings,
+  wordCount,
+} = Astro.props;
+
+const numStr = number.toString().padStart(3, '0');
+const dateStr = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+const pageTitle = `${title} — ${site.title}`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description ?? dek} />
+    <title>{pageTitle}</title>
+    <script is:inline>
+      (function () {
+        var saved = localStorage.getItem('womm-theme');
+        var prefers = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var theme = saved || (prefers ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+        document.addEventListener('DOMContentLoaded', function () {
+          document.querySelectorAll('[data-theme-label]').forEach(function (el) {
+            el.textContent = theme;
+          });
+        });
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="reading-bar">
+      <div class="shell" style="display:flex;align-items:center;justify-content:space-between;width:100%;">
+        <Wordmark />
+        <div class="right">
+          <a href="/">← All writing</a>
+          <ThemeToggle />
+        </div>
+      </div>
+      <div class="progress-wrap">
+        <div class="progress" id="reading-progress"></div>
+      </div>
+    </div>
+
+    <TableOfContents headings={headings} />
+
+    <div class="shell">
+      <header class="article-head">
+        <div class="kicker">
+          <b>{kicker}</b>
+          <span class="dot"></span>
+          <span>№ {numStr}</span>
+          <span class="dot"></span>
+          <span>{category}</span>
+        </div>
+        <h1 set:html={title} />
+        <p class="dek">{dek}</p>
+        <div class="byline">
+          <div class="by">By <b>{site.author}</b> &nbsp;·&nbsp; {dateStr} &nbsp;·&nbsp; {readTime} min read</div>
+          {wordCount && <div>Est. {wordCount.toLocaleString()} words</div>}
+        </div>
+      </header>
+
+      <article class="article-body" id="article-body">
+        <slot />
+      </article>
+
+      <footer class="article-foot">
+        <div class="tags">
+          {tags.map((t) => <span class="tag">{t}</span>)}
+        </div>
+        <div class="share">
+          <span>{dateStr}</span>
+          <div style="display:flex;gap:18px;flex-wrap:wrap;">
+            <a href={`mailto:?subject=${encodeURIComponent(title)}`}>Email a friend</a>
+          </div>
+        </div>
+      </footer>
+
+      <slot name="nextprev" />
+
+      <footer class="footer">
+        <div>
+          <h4>Colophon</h4>
+          <p class="colophon">
+            Written by <em>{site.author}</em> — a technical generalist writing about AI,
+            homelabs, Docker, Home Assistant, and whatever else breaks this week.
+            Built by hand with Astro. No analytics, no trackers, no newsletter popup.
+          </p>
+        </div>
+        <div>
+          <h4>Legal-ish</h4>
+          <a href="/license">Everything is MIT</a>
+          <a href="/about">Opinions are mine</a>
+          <span>Made in the Netherlands, somewhere, sometime</span>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      (function () {
+        const KEY = 'womm-theme';
+
+        function updateLabel(theme: string) {
+          document.querySelectorAll('[data-theme-label]').forEach((el) => {
+            el.textContent = theme;
+          });
+        }
+
+        document.addEventListener('click', (e) => {
+          const btn = (e.target as Element).closest('[data-theme-toggle]');
+          if (!btn) return;
+          const cur = document.documentElement.getAttribute('data-theme');
+          const next = cur === 'dark' ? 'light' : 'dark';
+          document.documentElement.setAttribute('data-theme', next);
+          localStorage.setItem(KEY, next);
+          updateLabel(next);
+        });
+      })();
+    </script>
+
+    <script>
+      (function () {
+        const progress = document.getElementById('reading-progress');
+        const article = document.getElementById('article-body');
+        const toc = document.getElementById('toc');
+        const tocLinks = document.querySelectorAll('[data-toc]');
+
+        function onScroll() {
+          if (!article || !progress) return;
+          const rect = article.getBoundingClientRect();
+          const scrolled = window.scrollY;
+          const total = document.documentElement.scrollHeight - window.innerHeight;
+          const pct = total > 0 ? Math.max(0, Math.min(1, scrolled / total)) : 0;
+          progress.style.width = (pct * 100) + '%';
+
+          if (toc) {
+            const inRange = rect.top < 140 && rect.bottom > 240;
+            toc.classList.toggle('is-visible', inRange);
+          }
+
+          if (tocLinks.length > 0) {
+            const headings = article.querySelectorAll('h2[id]');
+            let active = headings[0] as HTMLElement | undefined;
+            headings.forEach((h) => {
+              if (h.getBoundingClientRect().top < 140) active = h as HTMLElement;
+            });
+            if (active) {
+              tocLinks.forEach((a) => {
+                a.classList.toggle('active', a.getAttribute('href') === '#' + active!.id);
+              });
+            }
+          }
+        }
+
+        window.addEventListener('scroll', onScroll, { passive: true });
+        onScroll();
+      })();
+    </script>
+  </body>
+</html>

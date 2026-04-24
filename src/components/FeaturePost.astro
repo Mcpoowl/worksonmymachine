@@ -1,0 +1,43 @@
+---
+import Tag from './Tag.astro';
+
+interface Props {
+  number: number;
+  date: Date;
+  readTime: number;
+  kicker: string;
+  category: string;
+  title: string;
+  dek: string;
+  tags: string[];
+  editorNote?: string;
+  href: string;
+}
+
+const { number, date, readTime, kicker, category, title, dek, tags, editorNote, href } = Astro.props;
+
+const numStr = number.toString().padStart(3, '0');
+const dateStr = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+---
+
+<a class="feature" href={href}>
+  <div class="num">
+    <b>№ {numStr}</b>
+    <span>{dateStr}</span><br />
+    <span>{readTime} min read</span>
+  </div>
+  <div class="body">
+    <span class="eyebrow"><b>{kicker}</b> &nbsp;·&nbsp; {category}</span>
+    <h3 set:html={title} />
+    <p class="dek">{dek}</p>
+    <div class="tags">
+      {tags.map((t) => <Tag label={t} />)}
+    </div>
+  </div>
+  {editorNote && (
+    <aside class="aside">
+      <b>Editor's note</b>
+      <span>{editorNote}</span>
+    </aside>
+  )}
+</a>

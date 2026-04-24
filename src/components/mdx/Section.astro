@@ -1,0 +1,9 @@
+---
+interface Props {
+  num: string;
+  id?: string;
+}
+const { num, id } = Astro.props;
+const slug = id ?? `sec-${num.replace(/\s+/g, '-').toLowerCase()}`;
+---
+<h2 id={slug}><span class="num">§ {num}</span><slot /></h2>
