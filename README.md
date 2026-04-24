@@ -1,63 +1,33 @@
-# Astro Starter Kit: Blog
+# Works on My Machine
 
-```sh
-npm create astro@latest -- --template blog
-```
+Famous last words. Also the whole point.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+A personal tech blog about building, breaking, and occasionally fixing things. Homelab adventures, AI experiments, Docker stacks that probably shouldn't exist, and the odd unprompted opinion about technology.
 
-Features:
+Not an expert. Just a technically curious person figuring things out in public.
 
-- ✅ Minimal styling (make it your own!)
-- ✅ 100/100 Lighthouse performance
-- ✅ SEO-friendly with canonical URLs and Open Graph data
-- ✅ Sitemap support
-- ✅ RSS Feed support
-- ✅ Markdown & MDX support
+---
 
-## 🚀 Project Structure
+## What you'll find here
 
-Inside of your Astro project, you'll see the following folders and files:
+- **Homelab** - Synology NAS, Docker stacks, self-hosted everything
+- **AI & Claude Code** - real projects, real failures, zero hype
+- **Home Assistant & Energy** - automating the mundane since forever
+- **Dev stuff** - low-code, no-code, some-code
+- **Random tech tangents** - because the internet clearly needs more of those
 
-```text
-├── public/
-├── src/
-│   ├── assets/
-│   ├── components/
-│   ├── content/
-│   ├── layouts/
-│   └── pages/
-├── astro.config.mjs
-├── README.md
-├── package.json
-└── tsconfig.json
-```
+---
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Contributing
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+Personal blog, so contributions are closed. If something I wrote helped you, or was spectacularly wrong, feel free to open an issue. A good "well actually" is always welcome.
 
-The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
+---
 
-Any static assets, like images, can be placed in the `public/` directory.
+## License
 
-## 🧞 Commands
+Words: mine. Code snippets: steal freely, no attribution needed. Just don't blame me if it only works on my machine.
 
-All commands are run from the root of the project, from a terminal:
+---
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
-
-## Credit
-
-This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
+*Built in public. Opinions my own. Void where prohibited.*
