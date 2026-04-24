@@ -1,20 +1,33 @@
-import { defineCollection } from 'astro:content';
+import { defineCollection, z } from 'astro:content';
 import { glob } from 'astro/loaders';
-import { z } from 'astro/zod';
 
-const blog = defineCollection({
-	// Load Markdown and MDX files in the `src/content/blog/` directory.
-	loader: glob({ base: './src/content/blog', pattern: '**/*.{md,mdx}' }),
-	// Type-check frontmatter using a schema
-	schema: ({ image }) =>
-		z.object({
-			title: z.string(),
-			description: z.string(),
-			// Transform string to Date object
-			pubDate: z.coerce.date(),
-			updatedDate: z.coerce.date().optional(),
-			heroImage: z.optional(image()),
-		}),
+const posts = defineCollection({
+	loader: glob({ base: './src/content/posts', pattern: '**/*.{md,mdx}' }),
+	schema: z.object({
+		number: z.number(),
+		title: z.string(),
+		dek: z.string(),
+		category: z.string(),
+		kicker: z.enum(['Essay', 'Note', 'Field report', 'Rant']).default('Essay'),
+		date: z.coerce.date(),
+		readTime: z.number(),
+		tags: z.array(z.string()),
+		editorNote: z.string().optional(),
+		draft: z.boolean().default(false),
+	}),
 });
 
-export const collections = { blog };
+const now = defineCollection({
+	loader: glob({ base: './src/content/now', pattern: '**/*.{md,json}' }),
+	schema: z.object({
+		writing: z.string(),
+		reading: z.string(),
+		running: z.array(z.string()),
+		broken: z.array(z.string()),
+		listening: z.string(),
+		coffee: z.string(),
+		updatedAt: z.coerce.date(),
+	}),
+});
+
+export const collections = { posts, now };

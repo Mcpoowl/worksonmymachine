@@ -1,0 +1,32 @@
+---
+interface Props {
+  writing: string;
+  reading: string;
+  running: string[];
+  broken: string[];
+  listening: string;
+  coffee: string;
+}
+
+const { writing, reading, running, broken, listening, coffee } = Astro.props;
+---
+
+<aside>
+  <div class="now-card">
+    <div class="label">/ now</div>
+    <h4>What's running,<br />what's broken.</h4>
+    <ul>
+      <li><b>Writing</b><span>{writing}</span></li>
+      <li><b>Reading</b><span>{reading}</span></li>
+      {running.map((item) => (
+        <li><b>Running</b><span class="ok">{item} ✓</span></li>
+      ))}
+      {broken.map((item) => (
+        <li><b>Broken</b><span class="bad">{item}</span></li>
+      ))}
+      <li><b>Listening</b><span>{listening}</span></li>
+      <li><b>Coffee</b><span>{coffee}</span></li>
+    </ul>
+    <div class="sig">— updated by hand, roughly weekly</div>
+  </div>
+</aside>

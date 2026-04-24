@@ -1,49 +1,92 @@
 ---
-import BaseHead from '../components/BaseHead.astro';
-import Footer from '../components/Footer.astro';
-import Header from '../components/Header.astro';
-import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+import FeaturePost from '../components/FeaturePost.astro';
+import NowCard from '../components/NowCard.astro';
+import PostRow from '../components/PostRow.astro';
+
+const allPosts = await getCollection('posts', ({ data }) => !data.draft);
+const posts = allPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const featurePost = posts[0];
+const postList = posts.slice(1, 8);
+const earliestYear = Math.min(...posts.map((p) => p.data.date.getFullYear()));
+
+const daysAgo = featurePost
+  ? Math.round((Date.now() - featurePost.data.date.getTime()) / 86400000)
+  : 0;
+const updatedText =
+  daysAgo === 0 ? 'today' : daysAgo === 1 ? 'yesterday' : `${daysAgo} days ago`;
+
+const nowEntries = await getCollection('now');
+const now = nowEntries[0]?.data;
 ---
 
-<!doctype html>
-<html lang="en">
-	<head>
-		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-	</head>
-	<body>
-		<Header />
-		<main>
-			<h1>🧑‍🚀 Hello, Astronaut!</h1>
-			<p>
-				Welcome to the official <a href="https://astro.build/">Astro</a> blog starter template. This template
-				serves as a lightweight, minimally-styled starting point for anyone looking to build a personal
-				website, blog, or portfolio with Astro.
-			</p>
-			<p>
-				This template comes with a few integrations already configured in your
-				<code>astro.config.mjs</code> file. You can customize your setup with
-				<a href="https://astro.build/integrations">Astro Integrations</a> to add tools like Tailwind,
-				React, or Vue to your project.
-			</p>
-			<p>Here are a few ideas on how to get started with the template:</p>
-			<ul>
-				<li>Edit this page in <code>src/pages/index.astro</code></li>
-				<li>Edit the site header items in <code>src/components/Header.astro</code></li>
-				<li>Add your name to the footer in <code>src/components/Footer.astro</code></li>
-				<li>Check out the included blog posts in <code>src/content/blog/</code></li>
-				<li>Customize the blog post page layout in <code>src/layouts/BlogPost.astro</code></li>
-			</ul>
-			<p>
-				Have fun! If you get stuck, remember to
-				<a href="https://docs.astro.build/">read the docs</a>
-				or <a href="https://astro.build/chat">join us on Discord</a> to ask questions.
-			</p>
-			<p>
-				Looking for a blog template with a bit more personality? Check out
-				<a href="https://github.com/Charca/astro-blog-template">astro-blog-template</a>
-				by <a href="https://twitter.com/Charca">Maxi Ferreira</a>.
-			</p>
-		</main>
-		<Footer />
-	</body>
-</html>
+<Base>
+  <section class="hero">
+    <h1>
+      A notebook for<br />
+      things that <em>mostly</em><br />
+      work.<span class="aside">*most days</span>
+    </h1>
+    <div class="intro">
+      <p>I dabble in everything that is somewhat related to tech — both professionally and personally. Jack of all trades, master of none. This is where I write it all down, because I can. Expect honest notes on AI tooling, self-hosted infrastructure, and whatever my Home Assistant decided to do at 3am.</p>
+      <div class="meta">
+        <span class="live">rack is up</span>
+        <span>{posts.length} posts</span>
+        <span>~14&nbsp;min/wk</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-head">
+    <h2>Latest</h2>
+    <span class="meta">Updated {updatedText}</span>
+  </div>
+
+  {featurePost && (
+    <FeaturePost
+      number={featurePost.data.number}
+      date={featurePost.data.date}
+      readTime={featurePost.data.readTime}
+      kicker={featurePost.data.kicker}
+      category={featurePost.data.category}
+      title={featurePost.data.title}
+      dek={featurePost.data.dek}
+      tags={featurePost.data.tags}
+      editorNote={featurePost.data.editorNote}
+      href={`/posts/${featurePost.id}`}
+    />
+  )}
+
+  <div class="two-col">
+    <ul class="post-list">
+      {postList.map((post) => (
+        <PostRow
+          number={post.data.number}
+          date={post.data.date}
+          readTime={post.data.readTime}
+          category={post.data.category}
+          title={post.data.title}
+          href={`/posts/${post.id}`}
+        />
+      ))}
+    </ul>
+
+    {now && (
+      <NowCard
+        writing={now.writing}
+        reading={now.reading}
+        running={now.running}
+        broken={now.broken}
+        listening={now.listening}
+        coffee={now.coffee}
+      />
+    )}
+  </div>
+
+  <div class="all-posts">
+    <span>{posts.length} posts · {earliestYear} — now</span>
+    <a href="/archive">Browse the full archive &nbsp;→</a>
+  </div>
+</Base>

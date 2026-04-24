@@ -1,0 +1,114 @@
+---
+import { getCollection } from 'astro:content';
+import ThemeToggle from '../components/ThemeToggle.astro';
+import Wordmark from '../components/Wordmark.astro';
+import { site } from '../site.config';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { title, description = site.description } = Astro.props;
+const pageTitle = title ? `${title} — ${site.title}` : site.title;
+
+const posts = await getCollection('posts', ({ data }) => !data.draft);
+const issueNum = posts.length.toString().padStart(3, '0');
+
+const today = new Date().toLocaleDateString('en-US', {
+  weekday: 'long', month: 'long', day: 'numeric', year: 'numeric',
+});
+
+const currentPath = Astro.url.pathname;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={new URL(currentPath, site.url).href} />
+    <title>{pageTitle}</title>
+    <script is:inline>
+      (function () {
+        var saved = localStorage.getItem('womm-theme');
+        var prefers = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var theme = saved || (prefers ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+        document.addEventListener('DOMContentLoaded', function () {
+          document.querySelectorAll('[data-theme-label]').forEach(function (el) {
+            el.textContent = theme;
+          });
+        });
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="shell">
+      <header class="topbar">
+        <span class="date"><b>{today}</b></span>
+        <Wordmark />
+        <span class="issue">№ {issueNum} · est. {site.startYear}</span>
+      </header>
+
+      <nav class="mainnav" aria-label="Main navigation">
+        <div class="links">
+          {site.nav.map(({ label, href }) => (
+            <a
+              href={href}
+              aria-current={currentPath === href || (href !== '/' && currentPath.startsWith(href)) ? 'page' : undefined}
+            >
+              {label}
+            </a>
+          ))}
+        </div>
+        <ThemeToggle />
+      </nav>
+
+      <main>
+        <slot />
+      </main>
+
+      <footer class="footer">
+        <div>
+          <h4>Colophon</h4>
+          <p class="colophon">
+            Written by <em>{site.author}</em> — a technical generalist writing about AI,
+            homelabs, Docker, Home Assistant, and whatever else breaks this week.
+            Built by hand with Astro. No analytics, no trackers, no newsletter popup.
+          </p>
+        </div>
+        <div>
+          <h4>Legal-ish</h4>
+          <a href="/license">Everything is MIT</a>
+          <a href="/about">Opinions are mine</a>
+          <span>Made in the Netherlands, somewhere, sometime</span>
+        </div>
+      </footer>
+    </div>
+
+    <script>
+      (function () {
+        const KEY = 'womm-theme';
+
+        function updateLabel(theme: string) {
+          document.querySelectorAll('[data-theme-label]').forEach((el) => {
+            el.textContent = theme;
+          });
+        }
+
+        document.addEventListener('click', (e) => {
+          const btn = (e.target as Element).closest('[data-theme-toggle]');
+          if (!btn) return;
+          const cur = document.documentElement.getAttribute('data-theme');
+          const next = cur === 'dark' ? 'light' : 'dark';
+          document.documentElement.setAttribute('data-theme', next);
+          localStorage.setItem(KEY, next);
+          updateLabel(next);
+        });
+      })();
+    </script>
+  </body>
+</html>

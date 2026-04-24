@@ -1,0 +1,30 @@
+---
+interface Props {
+  number: number;
+  date: Date;
+  readTime: number;
+  category: string;
+  title: string;
+  href: string;
+}
+
+const { number, date, readTime, category, title, href } = Astro.props;
+
+const numStr = number.toString().padStart(3, '0');
+const dateStr = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+---
+
+<li>
+  <a class="post-row" href={href}>
+    <span class="num">№ {numStr}</span>
+    <div>
+      <h3 set:html={title} />
+      <span class="kicker">
+        <span class="cat">{category}</span>
+        <span>{dateStr}</span>
+        <span>{readTime} min</span>
+      </span>
+    </div>
+    <span class="read">Read →</span>
+  </a>
+</li>
