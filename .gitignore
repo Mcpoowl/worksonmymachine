@@ -25,3 +25,9 @@ pnpm-debug.log*
 
 # claude code
 .claude/
+
+# design handoff (reference only, not for production)
+handoff/
+
+# implementation todo (local working doc)
+TODO.md
