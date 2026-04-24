@@ -165,9 +165,9 @@ const pageTitle = `${title} — ${site.title}`;
         function onScroll() {
           if (!article || !progress) return;
           const rect = article.getBoundingClientRect();
-          const total = article.offsetHeight - window.innerHeight;
-          const scrolled = -rect.top;
-          const pct = Math.max(0, Math.min(1, scrolled / total));
+          const scrolled = window.scrollY;
+          const total = document.documentElement.scrollHeight - window.innerHeight;
+          const pct = total > 0 ? Math.max(0, Math.min(1, scrolled / total)) : 0;
           progress.style.width = (pct * 100) + '%';
 
           if (toc) {

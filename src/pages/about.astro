@@ -1,7 +1,123 @@
 ---
-// Placeholder — will be replaced in Step 12
+import { getCollection } from 'astro:content';
+import Base from '../layouts/Base.astro';
+
+const allPosts = await getCollection('posts', ({ data }) => !data.draft);
 ---
-<html lang="en">
-  <head><meta charset="utf-8" /><title>About — works on my machine</title></head>
-  <body><p>about page placeholder</p></body>
-</html>
+
+<Base title="About" description="About Paul — the person behind Works on My Machine.">
+
+  <header class="about-head">
+    <span class="eyebrow"><b>About</b> &nbsp;·&nbsp; colophon, bio, confessions</span>
+    <h1>Hi. I'm <em>Paul</em>, and this is where I keep the things I've figured out.</h1>
+  </header>
+
+  <div class="about-grid">
+
+    <div class="bio">
+      <p>I'm a software engineer by training and a generalist by temperament. I've shipped backends that get paged at night, front-ends that ship on Tuesdays, and one well-intentioned Kubernetes cluster that ran a single cron job for eighteen months before I noticed. I write about the places where software meets the physical world — which mostly means AI, self-hosted infrastructure, my homelab, and Home Assistant's ongoing campaign against my smart plugs.</p>
+
+      <p>This site exists because I got tired of solving the same problem twice. The first time through, I'd find the fix somewhere between a Reddit thread from 2019 and a GitHub issue marked <em>stale-bot closed</em>. The second time through, I'd find nothing, because it had been me who fixed it, and I had not written it down. Now I write it down.</p>
+
+      <p class="pullquote">Writing about something forces me to understand it. Posting it forces me to be less wrong. Both are, probably, the point.</p>
+
+      <p>The pieces here are long when they need to be and short when they don't. I try not to be a tutorial; there are better tutorials. I try not to be a corporate thought-leadership column; there are too many of those already. What I aim for is the tone of a notebook someone left in a shared house — honest, specific, occasionally pettily opinionated, mostly about the thing that broke.</p>
+
+      <p>If you want to know what I'm actually working on right now, the <a href="/">homepage's <em>now</em> card</a> is kept current by hand.</p>
+    </div>
+
+    <aside class="side">
+      <div class="side-block">
+        <h3>/ vitals</h3>
+        <dl>
+          <dt>Based</dt><dd>The Netherlands</dd>
+          <dt>Day job</dt><dd>Not named here, on purpose.</dd>
+          <dt>Since</dt><dd>This site launched <b>2026</b></dd>
+          <dt>Posts</dt><dd><b>{allPosts.length}</b>, roughly when I feel like it</dd>
+        </dl>
+      </div>
+
+      <div class="side-block">
+        <h3>/ tools, currently</h3>
+        <ul>
+          <li>Obsidian <span>notes</span></li>
+          <li>VS Code <span>code</span></li>
+          <li>Proxmox <span>homelab</span></li>
+          <li>Home Assistant <span>house</span></li>
+          <li>Docker Compose <span>containers</span></li>
+          <li>Caddy <span>reverse proxy</span></li>
+        </ul>
+      </div>
+
+      <div class="side-block">
+        <h3>/ I'll write about</h3>
+        <ul>
+          <li>AI, local &amp; useful <span>yes</span></li>
+          <li>Homelab &amp; self-hosting <span>yes</span></li>
+          <li>Docker, Compose, k3s <span>yes</span></li>
+          <li>Home Assistant <span>grudgingly</span></li>
+          <li>Web frameworks <span>rarely</span></li>
+          <li>Blockchain <span>no</span></li>
+        </ul>
+      </div>
+
+      <div class="side-block">
+        <h3>/ colophon</h3>
+        <dl>
+          <dt>Type</dt><dd>Newsreader &amp; IBM Plex Mono</dd>
+          <dt>Stack</dt><dd>Astro, static, Cloudflare Pages</dd>
+          <dt>Analytics</dt><dd>None</dd>
+          <dt>RSS</dt><dd>Always</dd>
+        </dl>
+      </div>
+    </aside>
+
+  </div>
+
+  <section class="faq">
+    <h2>Plausibly asked questions.</h2>
+
+    <div class="faq-item">
+      <div class="n">01</div>
+      <div>
+        <p class="q">Is the site name a <em>joke</em>?</p>
+        <p class="a">Partly. "Works on my machine" is the oldest apology in software. It's also the most honest description of anything I'd write here: it worked for me, in my conditions, on my hardware, on a Tuesday. Your mileage will vary. That's the whole point of writing it down.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="n">02</div>
+      <div>
+        <p class="q">Why no newsletter, comments, or tracking?</p>
+        <p class="a">Comments are a moderation job I don't want. Newsletters are a product I don't want to run. Analytics are a question I don't need answered. RSS is older than I am and still works.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="n">03</div>
+      <div>
+        <p class="q">Do you take sponsorships or affiliate links?</p>
+        <p class="a">No. If I recommend something, I paid for it. If that ever changes, this line will change with it.</p>
+      </div>
+    </div>
+
+    <div class="faq-item">
+      <div class="n">04</div>
+      <div>
+        <p class="q">Can I republish your posts?</p>
+        <p class="a">Mostly yes — everything is MIT, credit with a link back. Don't feed them to a model without asking; that's a different conversation and I'd like to have it.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact">
+    <div>
+      <h2>If something here was <em>useful</em>, or wrong, tell me.</h2>
+      <p>Corrections are the best kind of email. I reply to most things eventually, usually in batches with too much coffee. Assume nothing is urgent.</p>
+    </div>
+    <div class="channels">
+      <a href="mailto:paul@worksonmymachine.io">paul@worksonmymachine.io</a>
+    </div>
+  </section>
+
+</Base>
