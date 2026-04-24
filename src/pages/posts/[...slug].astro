@@ -1,0 +1,57 @@
+---
+import { getCollection, render } from 'astro:content';
+import Flourish from '../../components/mdx/Flourish.astro';
+import Figure from '../../components/mdx/Figure.astro';
+import MarginNote from '../../components/mdx/MarginNote.astro';
+import Pullquote from '../../components/mdx/Pullquote.astro';
+import Section from '../../components/mdx/Section.astro';
+import Article from '../../layouts/Article.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('posts', ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content, headings, remarkPluginFrontmatter } = await render(post);
+
+const allPosts = await getCollection('posts', ({ data }) => !data.draft);
+const sorted = allPosts.sort((a, b) => b.data.number - a.data.number);
+const idx = sorted.findIndex((p) => p.id === post.id);
+const prev = sorted[idx + 1];
+const next = sorted[idx - 1];
+
+const mdxComponents = { Section, MarginNote, Figure, Pullquote, Flourish };
+---
+
+<Article
+  title={post.data.title}
+  kicker={post.data.kicker}
+  number={post.data.number}
+  category={post.data.category}
+  dek={post.data.dek}
+  date={post.data.date}
+  readTime={post.data.readTime}
+  tags={post.data.tags}
+  headings={headings}
+>
+  <Content components={mdxComponents} />
+
+  <nav slot="nextprev" class="nextprev">
+    {prev ? (
+      <a href={`/posts/${prev.id}`}>
+        <div class="label">← Previous &nbsp; № {prev.data.number.toString().padStart(3, '0')}</div>
+        <h4 set:html={prev.data.title} />
+      </a>
+    ) : <div />}
+    {next ? (
+      <a href={`/posts/${next.id}`} class="next">
+        <div class="label">Next &nbsp; № {next.data.number.toString().padStart(3, '0')} →</div>
+        <h4 set:html={next.data.title} />
+      </a>
+    ) : <div />}
+  </nav>
+</Article>

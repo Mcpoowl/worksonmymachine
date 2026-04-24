@@ -1,9 +1,9 @@
 {
-  "writing": "A piece on VLAN segmentation for home networks",
-  "reading": "The Pragmatic Programmer (again)",
-  "running": ["Proxmox 8.3", "Home Assistant 2026.3", "Ollama + llama3.2"],
-  "broken": ["The UPS battery", "My sleep schedule"],
-  "listening": "The Changelog podcast",
-  "coffee": "Ethiopian Yirgacheffe, aeropress",
-  "updatedAt": "2026-04-20"
+  "writing": "This very site. Sort of",
+  "reading": "Claude's output probably",
+  "running": ["Adguard", "Immich", "Home Assistant", "Vaultwarden","Unifi", "teslamate", "vibecoded budgeting app"],
+  "broken": ["Ollama + ha-mcp", "Motivation to fix the previous..."],
+  "listening": "Anything with a beat probably",
+  "coffee": "Yes",
+  "updatedAt": "2026-04-24"
 }
