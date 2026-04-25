@@ -18,7 +18,7 @@ draft: false
 
 I've been wanting a personal site for years. Not a portfolio (I don't need another place to list skills I have in a font no one asked for). Just a place to scribble things down. Notes, rants, field reports from whatever I broke this week and other ramblings I might have.
 
-The brief I gave myself: fast, no JavaScript bloat, no CMS to maintain, no analytics creeping on readers. Text on a screen. RSS feed. Done.
+The brief I gave myself: fast, no CMS to maintain, something new to learn. Text on a screen. RSS feed. Done.
 
 I looked at Hugo, Eleventy, and about four other static site generators before landing on Astro. Astro won because it ships zero JavaScript by default, has a clean content collections API, works with .MD files and the docs don't make me want to close the tab. That's a high bar nowadays.
 
