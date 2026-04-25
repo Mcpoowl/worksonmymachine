@@ -6,8 +6,6 @@ export const site = {
 	startYear: 2026,
 	nav: [
 		{ label: 'Writing', href: '/' },
-		{ label: 'Homelab', href: '/homelab' },
-		{ label: 'Notes', href: '/notes' },
 		{ label: 'About', href: '/about' },
 		{ label: 'RSS', href: '/rss.xml' },
 	],
