@@ -178,7 +178,9 @@ const pageTitle = `${title} — ${site.title}`;
           progress.style.width = (pct * 100) + '%';
 
           if (toc) {
-            const inRange = rect.top < 140 && rect.bottom > 240;
+            const articleFooter = document.querySelector('.article-foot');
+            const footRect = articleFooter?.getBoundingClientRect();
+            const inRange = !footRect || footRect.top > window.innerHeight * 0.4;
             toc.classList.toggle('is-visible', inRange);
           }
 

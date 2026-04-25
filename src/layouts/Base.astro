@@ -96,6 +96,18 @@ const currentPath = Astro.url.pathname;
     <script>
       (function () {
         const KEY = 'womm-theme';
+        const POKE_LIGHT = [
+          'psst — kill the lights ↗',
+          'click this if you write code at 3am ↗',
+          'go on, switch to vampire mode ↗',
+          'one tap to enter the void ↗'
+        ];
+        const POKE_DARK = [
+          'press this to scorch your retinas ↗',
+          'click for full daylight assault ↗',
+          'feeling brave? back to bright mode ↗',
+          'one tap to summon the sun ↗'
+        ];
 
         function updateLabel(theme: string) {
           document.querySelectorAll('[data-theme-label]').forEach((el) => {
@@ -106,6 +118,17 @@ const currentPath = Astro.url.pathname;
           });
         }
 
+        function updatePokeNote(theme: string) {
+          const el = document.querySelector('[data-poke-note]');
+          if (!el) return;
+          const pool = theme === 'dark' ? POKE_DARK : POKE_LIGHT;
+          el.textContent = pool[Math.floor(Math.random() * pool.length)];
+        }
+
+        // Initialize poke note on load
+        const initialTheme = document.documentElement.getAttribute('data-theme');
+        updatePokeNote(initialTheme);
+
         document.addEventListener('click', (e) => {
           const btn = (e.target as Element).closest('[data-theme-toggle]');
           if (!btn) return;
@@ -114,6 +137,7 @@ const currentPath = Astro.url.pathname;
           document.documentElement.setAttribute('data-theme', next);
           localStorage.setItem(KEY, next);
           updateLabel(next);
+          updatePokeNote(next);
         });
       })();
     </script>

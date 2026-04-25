@@ -4,6 +4,7 @@ import Base from '../layouts/Base.astro';
 import FeaturePost from '../components/FeaturePost.astro';
 import NowCard from '../components/NowCard.astro';
 import PostRow from '../components/PostRow.astro';
+import ThemeSwitcherPrompt from '../components/ThemeSwitcherPrompt.astro';
 
 const allPosts = await getCollection('posts', ({ data }) => !data.draft);
 const posts = allPosts.sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
@@ -24,6 +25,15 @@ const now = nowEntries[0]?.data;
 
 <Base>
   <section class="hero">
+    <div class="theme-poke" aria-hidden="true">
+      <span class="theme-poke__note" data-poke-note>psst — kill the lights ↗</span>
+      <svg class="theme-poke__arrow" viewBox="0 0 280 230" preserveAspectRatio="none" fill="none">
+        <path d="M 190 178 Q 220 158, 220 138 T 232 102 T 246 66"
+              stroke="currentColor" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+        <path d="M 238 66 L 246 58 L 254 66"
+              stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+    </div>
     <h1>
       A notebook for<br />
       things that <em>mostly</em><br />
