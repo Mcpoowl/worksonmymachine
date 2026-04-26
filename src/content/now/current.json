@@ -1,9 +1,9 @@
 {
-  "writing": "This very site. Sort of",
+  "writing": "This very site and its first content",
   "reading": "Claude's output probably",
   "running": ["Adguard", "Immich", "Home Assistant", "Vaultwarden","Unifi", "teslamate", "vibecoded budgeting app"],
-  "broken": ["Ollama + ha-mcp", "Motivation to fix the previous..."],
-  "listening": "Anything with a beat probably",
+  "broken": ["Ollama + ha-mcp via open-webui", "Motivation to fix the previous..."],
+  "listening": "Anything with a beat",
   "coffee": "Yes",
-  "updatedAt": "2026-04-24"
+  "updatedAt": "2026-04-26"
 }
