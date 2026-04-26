@@ -4,7 +4,7 @@ title: This Site Took Four Hours to Build and Two Days to Load
 dek: Building a personal blog with Astro and Claude was the easy part. Getting it to resolve on my own network was not.
 category: Dev
 kicker: Field report
-date: 2026-04-26
+date: 2026-04-25
 readTime: 8
 tags:
   - astro
@@ -18,7 +18,7 @@ draft: false
 
 I've been wanting a personal site for years. Not a portfolio (I don't need another place to list skills I have in a font no one asked for). Just a place to scribble things down. Notes, rants, field reports from whatever I broke this week and other ramblings I might have.
 
-The brief I gave myself: fast, no CMS to maintain, something new to learn. Text on a screen. RSS feed. Done.
+What I wanted: fast, no CMS to maintain, something new to learn. Text on a screen. RSS feed. Done.
 
 I looked at Hugo, Eleventy, and about four other static site generators before landing on Astro. Astro won because it ships zero JavaScript by default, has a clean content collections API, works with .MD files and the docs don't make me want to close the tab. That's a high bar nowadays.
 
@@ -33,7 +33,7 @@ The stack ended up as:
 - **Astro** — static site generator, file-based routing
 - **Newsreader** — the serif. Variable font, optical sizing, the works
 - **IBM Plex Mono** — for everything that needs to look like it came out of a terminal
-- **Pure CSS** — no Tailwind, no utility framework. I know, I know
+- **Pure CSS** — no Tailwind, no utility framework. 
 - **Cloudflare Pages (Workers)** — deployment, which we'll get to
 
 Total build time: about four hours of active work across two sessions. The design was already specced out including a complete handoff document with tokens, component specs, the whole thing. Having that made the difference between "Claude writes what it thinks a blog looks like" and "Claude builds what I actually want." The results? You're reading it right now. Not gonna lie, I was pretty impressed considering all the vibe-coded SaaS sites I've seen pop up the last few months. THEY. ALL. LOOK. THE. SAME.
@@ -42,7 +42,7 @@ Total build time: about four hours of active work across two sessions. The desig
 
 Anyway.. Bought `worksonmymachine.io` on Namecheap. The `.io` tax is real (it's not cheap) but `.dev` felt too on-the-nose,`.com` was gone years ago to someone who has never used it and `.tech` was just.. 'meh'
 
-Namecheap's UI is fine. I've used it for years. The process of moving DNS to Cloudflare was new for me, but couldn't have been easier: go get Cloudflare's nameservers, paste them into Namecheap, wait. Cloudflare sends you a very cheerful email when it's done. The email arrived. I moved on.
+Namecheap's UI is fine. I've used it for years. The process of moving DNS to Cloudflare was new for me, but couldn't have been easier: go get Cloudflare's nameservers, paste them into Namecheap, wait. Cloudflare sends you a very cheerful email when it's done. The email arrived. Let's carry on.
 
 Or so I thought.
 
