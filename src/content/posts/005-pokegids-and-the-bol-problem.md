@@ -14,7 +14,7 @@ tags:
   - ban
   - scraper
 editorNote: "an IP ban later, but zero regrets!"
-draft: true
+draft: false
 ---
 
 I just started my Pokémon TCG collection journey (yes, I'm late, I know). I'm in for the fun of it, and for the nostalgia; I'm not chasing grails, I mostly just like opening packs and the possible dopamine hit
