@@ -64,3 +64,5 @@ pokeping and pokegids don't share a look, on purpose. pokeping is dark, dense, a
 They'll probably link to each other eventually in some way or form. I really want to help people like me grab stock for a normal price instead of having to pay scalper prices without having to resort to sketchy paid tools, that'll probably don't even work half of the time, even it that means I'd lose my 'competitive edge'.
 
 Two sites now, doing two different jobs, built two days apart, held together by one dumb IP ban. I'll take it. We live and we learn.. Thank bol for unflagging my IP address. It won't happen again. <3
+
+Oh, and the site, should you be interested is [Pokegids.nl](https://www.pokegids.nl). It's in Dutch, but feel free to browse around!
